@@ -15,8 +15,8 @@ module "iam" {
   service_account_id  = var.service_account_id
 }
 
-module "compute-engine-front" {
-  source = "./modules/compute-engine-front"
+module "compute-engine" {
+  source = "./modules/compute-engine"
   region_name = var.region_name
 }
 

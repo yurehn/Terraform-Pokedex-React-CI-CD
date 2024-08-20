@@ -1,5 +1,5 @@
 output "machine_ips" {
-  value = module.compute-engine-front.machine_ips
+  value = module.compute-engine.machine_ips
 }
 
 output "cloud_run_url" {
