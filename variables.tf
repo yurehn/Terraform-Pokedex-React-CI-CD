@@ -14,11 +14,3 @@ variable "region_name" {
     description = "default is us-central1"
     default = "us-central1"
 }
-
-variable "cloud_run_app" {
-  type = string
-}
-
-variable "app_image_name" {
-  type = string
-}
