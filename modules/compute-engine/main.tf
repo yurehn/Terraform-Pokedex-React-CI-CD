@@ -8,7 +8,7 @@ resource "google_compute_instance" "default" {
   count = length(local.vm_machines)
 
   lifecycle {
-    prevent_destroy = true
+    prevent_destroy = false
   }
 
   name         = local.vm_machines[count.index].name
