@@ -43,6 +43,7 @@ jobs:
 
         - name: Save VM IP to Google Cloud Storage
           run: |
+            terraform init
             VM_IP=$(terraform output -json machine_ips | jq -r '.["virtual-machine-pokeapi"]')
             echo $VM_IP > vm_ip.txt
             gsutil cp vm_ip.txt gs://poke_api/vm_ips/${{ secrets.WORKSPACE }}.txt
