@@ -2,28 +2,18 @@
 
 # 1. Instalar Docker
 curl -fsSL https://get.docker.com -o install-docker.sh
-sh install-docker.sh
-
-# 2. Instalar herramientas adicionales
 sudo sh install-docker.sh
+
+# 2. Instalar Docker Compose
+sudo apt-get update
+sudo apt-get install -y docker-compose
+
+# 3. Instalar herramientas adicionales
 sudo apt install -y net-tools
 
-# 3. Configurar variables para Artifact Registry
-REGISTRY_NAME="us-central1-docker.pkg.dev"
-PROJECT_NAME="direct-outlook-429315-s5"
-REPOSITORY_IMAGE="$REGISTRY_NAME/$PROJECT_NAME/dockers/frontend-service-build"
+# 4. Confirmar que Docker y Docker Compose están instalados correctamente
+docker --version
+docker-compose --version
 
-echo "El valor de REPOSITORY_IMAGE es: $REPOSITORY_IMAGE"
 
-# 4. Autenticar Docker con Google Artifact Registry
-gcloud auth configure-docker --quiet $REGISTRY_NAME
-
-# 5. Descargar la imagen Docker desde Artifact Registry
-sudo docker pull $REPOSITORY_IMAGE
-
-# 6. Ejecutar la imagen Docker en un contenedor
-# Expone el puerto 80 (Nginx) para servir la aplicación React
-sudo docker run -d --name react-app -p 80:80 $REPOSITORY_IMAGE
-
-# 7. Confirmar que el contenedor está en ejecución
-sudo docker ps -a
+echo "La máquina está lista para recibir imágenes Docker y ejecutar Docker Compose."

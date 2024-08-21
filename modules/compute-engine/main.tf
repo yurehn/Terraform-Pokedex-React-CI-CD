@@ -8,7 +8,7 @@ resource "google_compute_instance" "default" {
   count = length(local.vm_machines)
 
   lifecycle {
-    prevent_destroy = false
+    prevent_destroy = true
   }
 
   name         = local.vm_machines[count.index].name
@@ -23,7 +23,7 @@ resource "google_compute_instance" "default" {
     }
   }
   labels = {
-    my_label = "frontend-machine"
+    my_label = "virtual-machine-pokeApi"
   }
 
   network_interface {
