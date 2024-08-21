@@ -40,3 +40,11 @@ jobs:
           with:
             run: ${{ steps.apply-run.outputs.run_id }}
             comment: "Apply Run from GitHub Actions CI ${{ github.sha }}"
+
+        - name: Save VM IP to Google Cloud Storage
+          run: |
+            VM_IP=$(terraform output -json machine_ips | jq -r '.["virtual-machine-pokeapi"]')
+            echo $VM_IP > vm_ip.txt
+            gsutil cp vm_ip.txt gs://poke_api/vm_ips/${{ secrets.WORKSPACE }}.txt
+          env:
+            GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}

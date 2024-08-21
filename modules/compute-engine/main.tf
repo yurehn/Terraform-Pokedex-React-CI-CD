@@ -22,6 +22,7 @@ resource "google_compute_instance" "default" {
       image = local.vm_machines[count.index].image
     }
   }
+  
   labels = {
     my_label = "virtual-machine-pokeapi"
   }
