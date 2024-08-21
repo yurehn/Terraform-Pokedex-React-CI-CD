@@ -23,7 +23,7 @@ resource "google_compute_instance" "default" {
     }
   }
   labels = {
-    my_label = "virtual-machine-pokeApi"
+    my_label = "virtual-machine-pokeapi"
   }
 
   network_interface {
