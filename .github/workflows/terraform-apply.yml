@@ -41,15 +41,6 @@ jobs:
             run: ${{ steps.apply-run.outputs.run_id }}
             comment: "Apply Run from GitHub Actions CI ${{ github.sha }}"
 
-        - name: Save VM IP to Google Cloud Storage
-          run: |
-            terraform init
-            VM_IP=$(terraform output -json machine_ips | jq -r '.["virtual-machine-pokeapi"]')
-            echo $VM_IP > vm_ip.txt
-            gsutil cp vm_ip.txt gs://poke_api/vm_ips/${{ secrets.WORKSPACE }}.txt
-          env:
-            GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}
-            TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
         - name: Verify TF_API_TOKEN
           run: |
             if [ -z "$TF_API_TOKEN" ]; then
@@ -60,5 +51,16 @@ jobs:
             fi
           env:
             TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
+
+        - name: Save VM IP to Google Cloud Storage
+          run: |
+            terraform init
+            VM_IP=$(terraform output -json machine_ips | jq -r '.["virtual-machine-pokeapi"]')
+            echo $VM_IP > vm_ip.txt
+            gsutil cp vm_ip.txt gs://poke_api/vm_ips/${{ secrets.WORKSPACE }}.txt
+          env:
+            GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}
+            TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
+       
           
 
