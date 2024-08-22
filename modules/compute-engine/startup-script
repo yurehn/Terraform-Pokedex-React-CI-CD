@@ -4,16 +4,13 @@
 curl -fsSL https://get.docker.com -o install-docker.sh
 sudo sh install-docker.sh
 
-# 2. Instalar Docker Compose
+# 2. Instalar herramientas adicionales
 sudo apt-get update
-sudo apt-get install -y docker-compose
-
-# 3. Instalar herramientas adicionales
 sudo apt install -y net-tools
 
 # 4. Confirmar que Docker y Docker Compose están instalados correctamente
 docker --version
-docker-compose --version
+docker compose version
 
 
 echo "La máquina está lista para recibir imágenes Docker y ejecutar Docker Compose."
