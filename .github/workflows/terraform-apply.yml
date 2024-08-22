@@ -49,3 +49,16 @@ jobs:
             gsutil cp vm_ip.txt gs://poke_api/vm_ips/${{ secrets.WORKSPACE }}.txt
           env:
             GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}
+            TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
+        - name: Verify TF_API_TOKEN
+          run: |
+            if [ -z "$TF_API_TOKEN" ]; then
+              echo "TF_API_TOKEN is not set"
+              exit 1
+            else
+              echo "TF_API_TOKEN is set"
+            fi
+          env:
+            TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
+          
+
