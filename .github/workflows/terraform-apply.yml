@@ -42,6 +42,9 @@ jobs:
             run: ${{ steps.apply-run.outputs.run_id }}
             comment: "Apply Run from GitHub Actions CI ${{ github.sha }}"
 
+        - name: Terraform Init
+          run: terraform init
+
         - name: Save VM IP to Google Cloud Storage
           run: |
             terraform output -json machine_ips | jq -r '.["virtual-machine-pokeapi"]' > vm_ip.txt
