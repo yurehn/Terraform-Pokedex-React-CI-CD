@@ -6,5 +6,5 @@ variable "region_name" {
 
 variable "vm_service_account" {
     type = string
-    default = "pokedex-pipeline@direct-outlook-429315-s5.iam.gserviceaccount.com"
+    default = "virtual-machine@direct-outlook-429315-s5.iam.gserviceaccount.com"
 }
