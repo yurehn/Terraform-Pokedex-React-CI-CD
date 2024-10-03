@@ -9,16 +9,5 @@
       "https",
       "http"
     ]
-  },
-  {
-    "name": "virtual-machine-pokeapi-backend",
-    "boot_disk_size": 10,
-    "machine_type": "e2-micro",
-    "image": "https://www.googleapis.com/compute/v1/projects/ubuntu-os-pro-cloud/global/images/ubuntu-pro-2204-jammy-v20240320",
-    "tags": [
-      "backend-instance",
-      "https",
-      "http"
-    ]
   }
 ]
