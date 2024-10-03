@@ -34,7 +34,7 @@ resource "google_compute_instance" "default" {
     }
   }
 
-  metadata_startup_script = file("${path.module}/startupScripts/startup-script-front")
+  metadata_startup_script = file("${path.module}/startupScripts/startup-script-front.sh")
 
   service_account {
     email  = local.default_vm_service_account
